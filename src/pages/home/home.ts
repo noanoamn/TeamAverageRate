@@ -8,12 +8,26 @@ import { DetailPage } from '../detail/detail';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  items;
 
+  constructor(public navCtrl: NavController) {
+    this.initializeItems();
   }
   
   openDetailPage() {
     this.navCtrl.push(DetailPage, {});
   }
+
+  initializeItems() {
+    this.items = [
+      {'userName':'User1'},
+      {'userName':'User2'},
+      {'userName':'User3'},
+      {'userName':'User4'},
+      {'userName':'User5'},
+      {'userName':'User6'},
+    ];
+  }
+
 
 }
