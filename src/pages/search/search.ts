@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { DetailPage } from '../detail/detail';
 
 @Component({
   selector: 'page-search',
@@ -11,6 +12,12 @@ export class SearchPage {
 
   constructor(public navCtrl: NavController) {
     this.initializeItems();
+  }
+
+  // 詳細ページに遷移
+  // TODO ユーザーのIDを引数とするメソッドに変更する
+  openDetailPage() {
+    this.navCtrl.push(DetailPage, {});
   }
 
   initializeItems() {
