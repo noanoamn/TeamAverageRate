@@ -1,13 +1,10 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Search
-    </ion-title>
-  </ion-navbar>
+  <ion-toolbar>
+    <ion-searchbar (input)="getItems($event)"></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
   <ion-list>
     <ion-item *ngFor="let item of items">
       <ion-thumbnail item-start>
