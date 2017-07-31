@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { DetailPage } from '../detail/detail';
+import oversmash from 'oversmash';
 
 @Component({
   selector: 'page-search',
@@ -9,10 +10,13 @@ import { DetailPage } from '../detail/detail';
 export class SearchPage {
 
   items;
+  searchResult;
+  ow;
 
   constructor(public navCtrl: NavController) {
     this.initializeItems();
     console.log(this.items);
+    this.searchResult = {};
   }
 
   // 詳細ページに遷移
@@ -76,5 +80,18 @@ export class SearchPage {
         return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
+  }
+
+  // 検索を行う
+  getPlayerInfo(playerIdFirstPart, playerIdSecondPart) {
+    // PlayerIDの前半部分と後半部分を結合する
+    let playerId = playerIdFirstPart + '-' + playerIdSecondPart;
+    // 検索文字列を引数としてプレイヤースタッツを取得
+    this.ow = oversmash();
+    // 仮でユーザー指定して検索
+    this.ow.playerStats('Noanoa-1926', 'kr', 'pc').then(player => {
+      console.log(JSON.stringify(player))
+      this.searchResult = player;
+    });
   }
 }
