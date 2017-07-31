@@ -12,6 +12,7 @@ export class SearchPage {
 
   constructor(public navCtrl: NavController) {
     this.initializeItems();
+    console.log(this.items);
   }
 
   // 詳細ページに遷移
