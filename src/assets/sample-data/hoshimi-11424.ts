@@ -1,4 +1,4 @@
-{
+export const HOSHIMI_11424 = {
   "name": "hoshimi-11424",
   "region": "kr",
   "platform": "pc",

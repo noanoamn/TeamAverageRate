@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { DetailPage } from '../detail/detail';
 import oversmash from 'oversmash';
+// サンプルデータ
+import { NOANOA_1926 } from '../../assets/sample-data/Noanoa-1926';
+import { HOSHIMI_11424 } from '../../assets/sample-data/hoshimi-11424';
+import { GAPPO3_1173 } from '../../assets/sample-data/gappo3-1173';
 
 @Component({
   selector: 'page-search',
@@ -89,9 +93,14 @@ export class SearchPage {
     // 検索文字列を引数としてプレイヤースタッツを取得
     this.ow = oversmash();
     // 仮でユーザー指定して検索
-    this.ow.playerStats('Noanoa-1926', 'kr', 'pc').then(player => {
-      console.log(JSON.stringify(player))
-      this.searchResult = player;
-    });
+    // this.ow.playerStats('Noanoa-1926', 'kr', 'pc').then(player => {
+    //   console.log(JSON.stringify(player))
+    //   this.searchResult = player;
+    // });
+
+    // サンプルデータから取得
+    console.log(NOANOA_1926);
+    this.searchResult = NOANOA_1926;
+    console.log(this.searchResult);
   }
 }

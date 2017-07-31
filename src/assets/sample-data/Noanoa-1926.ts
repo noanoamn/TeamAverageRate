@@ -1,4 +1,4 @@
-{
+export const NOANOA_1926 = {
   "name": "Noanoa-1926",
   "region": "kr",
   "platform": "pc",
@@ -2939,4 +2939,4 @@
       }
     }
   }
-}
+};

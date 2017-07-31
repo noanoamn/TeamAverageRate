@@ -1,4 +1,4 @@
-{
+export const GAPPO3_1173 = {
   "name": "gappo3-1173",
   "region": "kr",
   "platform": "pc",
