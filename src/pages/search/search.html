@@ -22,15 +22,40 @@
 </ion-header>
 
 <ion-content>
+  <ion-card>
+    <ion-card-content>
+      <ion-segment [(ngModel)]="region" padding-bottom>
+        <ion-segment-button value="kr">
+          KR
+        </ion-segment-button>
+        <ion-segment-button value="xx">
+          XX
+        </ion-segment-button>
+        <ion-segment-button value="yy">
+          YY
+        </ion-segment-button>
+      </ion-segment>
+      <ion-segment [(ngModel)]="console">
+        <ion-segment-button value="pc">
+          PC
+        </ion-segment-button>
+        <ion-segment-button value="xx">
+          XX
+        </ion-segment-button>
+        <ion-segment-button value="yy">
+          YY
+        </ion-segment-button>
+      </ion-segment>
+    </ion-card-content>
+  </ion-card>
   <ion-list>
-    <ion-item *ngFor="let item of items">
+    <ion-item>
       <ion-thumbnail item-start>
         <img src="img/thumbnail-totoro.png">
       </ion-thumbnail>
-      <h2>UserName : {{ item }}</h2>
+      <h2>UserName : UserName</h2>
       <p>WinRate</p>
       <p>Rate</p>
-      <button ion-button clear item-end (click)="openDetailPage()">View</button>
     </ion-item>
   </ion-list>
 </ion-content>
