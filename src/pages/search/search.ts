@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { DetailPage } from '../detail/detail';
 import oversmash from 'oversmash';
+import overwatchJs from 'overwatch-js';
 // サンプルデータ
 import { NOANOA_1926 } from '../../assets/sample-data/Noanoa-1926';
 import { HOSHIMI_11424 } from '../../assets/sample-data/hoshimi-11424';
@@ -16,6 +17,7 @@ export class SearchPage {
   items;
   searchResult;
   ow;
+  owjs;
 
   constructor(public navCtrl: NavController) {
     this.initializeItems();
@@ -92,6 +94,8 @@ export class SearchPage {
     let playerId = playerIdFirstPart + '-' + playerIdSecondPart;
     // 検索文字列を引数としてプレイヤースタッツを取得
     this.ow = oversmash();
+    this.owjs = overwatchJs.search('Noanoa-1926').then((data) => console.dir(data, {depth : 2, colors : true}) );
+
     // 仮でユーザー指定して検索
     // this.ow.playerStats('Noanoa-1926', 'kr', 'pc').then(player => {
     //   console.log(JSON.stringify(player))
