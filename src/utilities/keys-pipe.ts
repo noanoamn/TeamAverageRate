@@ -19,7 +19,6 @@ export class KeysPipe implements PipeTransform {
       if(aSum < bSum) return 1;
       return 0;
     });
-    console.log(keys);
     return keys;
   }
 

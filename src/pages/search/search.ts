@@ -19,12 +19,6 @@ export class SearchPage {
     this.searchResult = NOANOA_1926;
   }
 
-  // 詳細ページに遷移
-  // TODO ユーザーのIDを引数とするメソッドに変更する
-  openDetailPage() {
-    this.navCtrl.push(DetailPage, {});
-  }
-
   // 検索を行う
   getPlayerInfo(playerIdFirstPart, playerIdSecondPart) {
     // PlayerIDの前半部分と後半部分を結合する
@@ -37,8 +31,6 @@ export class SearchPage {
     //   );
 
     // サンプルデータから取得
-    console.log(NOANOA_1926);
     this.searchResult = NOANOA_1926;
-    console.log(this.searchResult);
   }
 }
