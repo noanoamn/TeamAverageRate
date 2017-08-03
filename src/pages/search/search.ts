@@ -13,14 +13,10 @@ import { GAPPO3_1173 } from '../../assets/sample-data/gappo3-1173';
 })
 export class SearchPage {
 
-  items;
   searchResult;
-  owjs;
 
   constructor(public navCtrl: NavController) {
-    this.initializeItems();
-    console.log(this.items);
-    this.searchResult = {};
+    this.searchResult = NOANOA_1926;
   }
 
   // 詳細ページに遷移
@@ -29,51 +25,16 @@ export class SearchPage {
     this.navCtrl.push(DetailPage, {});
   }
 
-  initializeItems() {
-    this.items = [
-      'Amsterdam',
-      'Bogota',
-      'Buenos Aires',
-      'Cairo',
-      'Dhaka',
-      'Edinburgh',
-      'Geneva',
-      'Genoa',
-      'Glasglow',
-      'Washington'
-    ];
-  }
-
-  getItems(ev) {
-    // Reset items back to all of the items
-    this.initializeItems();
-
-    // set val to the value of the ev target
-    var val = ev.target.value;
-
-    // if the value is an empty string don't filter the items
-    if (val && val.trim() != '') {
-      this.items = this.items.filter((item) => {
-        return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      })
-    }
-  }
-
   // 検索を行う
   getPlayerInfo(playerIdFirstPart, playerIdSecondPart) {
     // PlayerIDの前半部分と後半部分を結合する
     let playerId = playerIdFirstPart + '-' + playerIdSecondPart;
 
-    // overwatch-jsのテスト
-    // overwatch-jsの検索メソッド
-    this.owjs = overwatchJs.search('Noanoa-1926').then(
-      (data) => console.dir(data, {depth : 2, colors : true}) 
-      );
-
     // overwatch-jsの詳細情報取得メソッド
-    this.owjs = overwatchJs.getAll('pc', 'kr', 'Noanoa-1926').then(
-      (data) => console.dir(data, {depth : 2, colors : true}) 
-      );
+    // テストのため、固定値で取得
+    // this.searchResult = overwatchJs.getAll('pc', 'kr', 'gappo3-1173').then(
+    //   (data) => console.dir(data, {depth : 2, colors : true}) 
+    //   );
 
     // サンプルデータから取得
     console.log(NOANOA_1926);

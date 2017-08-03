@@ -48,27 +48,18 @@
   <ion-list>
     <ion-item>
       <ion-thumbnail item-start>
-        <img src="../../assets/sample-image/PI_Rikimaru.png">
+        <img src="{{ searchResult.profile.avatar }}">
       </ion-thumbnail>
-      <h2>UserName : UserName</h2>
-      <p>WinRate</p>
-      <p>Rate</p>
+      <h2>{{ searchResult.profile.nick }}</h2>
+      <p>{{ searchResult.competitive.global.games_won }} - {{ searchResult.competitive.global.games_lost }} - {{ searchResult.competitive.global.games_tied }}</p>
+      <p>{{ searchResult.profile.rank }}</p>
     </ion-item>
-    <ion-item>
+    <ion-item *ngFor="let hero of searchResult.competitive.heroes | keys | ">
       <ion-avatar item-start>
         <img src="../../assets/sample-image/Icon-Lucio.png">
       </ion-avatar>
-      <h2>HeroName : HeroName</h2>
-      <p>WinRate</p>
-      <p>Rate</p>
-    </ion-item>
-    <ion-item>
-      <ion-avatar item-start>
-        <img src="../../assets/sample-image/Icon-Lucio.png">
-      </ion-avatar>
-      <h2>HeroName : HeroName</h2>
-      <p>WinRate</p>
-      <p>Rate</p>
+      <h2>{{ hero }}</h2>
+      <p>{{ searchResult.competitive.heroes[hero].games_won }} - {{ searchResult.competitive.heroes[hero].games_lost }} - {{ searchResult.competitive.heroes[hero].games_tied }}</p>
     </ion-item>
   </ion-list>
 </ion-content>
