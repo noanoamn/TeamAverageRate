@@ -59,7 +59,7 @@
         <img src="../../assets/hero-images/{{ hero.heroImage }}">
       </ion-avatar>
       <h2>{{ hero.heroName }}</h2>
-      <p>{{ hero.games_won }} - {{ hero.games_lost }} - {{ hero.games_tied }}</p>
+      <p>{{ hero.games_won | nullToZero:hero.games_won }} - {{ hero.games_lost | nullToZero:hero.games_lost }} - {{ hero.games_tied | nullToZero:hero.games_tied }}</p>
     </ion-item>
   </ion-list>
 </ion-content>

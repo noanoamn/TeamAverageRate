@@ -9,6 +9,7 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 // カスタムパイプ
 import { OrderByPipe } from '../utilities/order-by-pipe';
+import { NullToZeroPipe } from '../utilities/null-to-zero-pipe';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -20,7 +21,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     DetailPage,
     HomePage,
     TabsPage,
-    OrderByPipe
+    OrderByPipe,
+    NullToZeroPipe
   ],
   imports: [
     BrowserModule,

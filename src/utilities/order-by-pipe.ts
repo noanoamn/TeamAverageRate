@@ -1,5 +1,6 @@
 import { PipeTransform, Pipe } from '@angular/core';
 
+// 配列をObjectのKeyの降順でソートするパイプ
 // 以下を参考に
 // https://stackoverflow.com/questions/35158817/angular-2-orderby-pipe
 @Pipe({
