@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { DetailPage } from '../detail/detail';
-import oversmash from 'oversmash';
 import overwatchJs from 'overwatch-js';
 // サンプルデータ
 import { NOANOA_1926 } from '../../assets/sample-data/Noanoa-1926';
@@ -16,7 +15,6 @@ export class SearchPage {
 
   items;
   searchResult;
-  ow;
   owjs;
 
   constructor(public navCtrl: NavController) {
@@ -42,33 +40,6 @@ export class SearchPage {
       'Geneva',
       'Genoa',
       'Glasglow',
-      'Hanoi',
-      'Hong Kong',
-      'Islamabad',
-      'Istanbul',
-      'Jakarta',
-      'Kiel',
-      'Kyoto',
-      'Le Havre',
-      'Lebanon',
-      'Lhasa',
-      'Lima',
-      'London',
-      'Los Angeles',
-      'Madrid',
-      'Manila',
-      'New York',
-      'Olympia',
-      'Oslo',
-      'Panama City',
-      'Peking',
-      'Philadelphia',
-      'San Francisco',
-      'Seoul',
-      'Taipeh',
-      'Tel Aviv',
-      'Tokio',
-      'Uelzen',
       'Washington'
     ];
   }
@@ -92,15 +63,17 @@ export class SearchPage {
   getPlayerInfo(playerIdFirstPart, playerIdSecondPart) {
     // PlayerIDの前半部分と後半部分を結合する
     let playerId = playerIdFirstPart + '-' + playerIdSecondPart;
-    // 検索文字列を引数としてプレイヤースタッツを取得
-    this.ow = oversmash();
-    this.owjs = overwatchJs.search('Noanoa-1926').then((data) => console.dir(data, {depth : 2, colors : true}) );
 
-    // 仮でユーザー指定して検索
-    // this.ow.playerStats('Noanoa-1926', 'kr', 'pc').then(player => {
-    //   console.log(JSON.stringify(player))
-    //   this.searchResult = player;
-    // });
+    // overwatch-jsのテスト
+    // overwatch-jsの検索メソッド
+    this.owjs = overwatchJs.search('Noanoa-1926').then(
+      (data) => console.dir(data, {depth : 2, colors : true}) 
+      );
+
+    // overwatch-jsの詳細情報取得メソッド
+    this.owjs = overwatchJs.getAll('pc', 'kr', 'Noanoa-1926').then(
+      (data) => console.dir(data, {depth : 2, colors : true}) 
+      );
 
     // サンプルデータから取得
     console.log(NOANOA_1926);
