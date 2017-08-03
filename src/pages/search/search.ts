@@ -14,6 +14,7 @@ import { GAPPO3_1173 } from '../../assets/sample-data/gappo3-1173';
 export class SearchPage {
 
   searchResult;
+  heroesArray;
 
   constructor(public navCtrl: NavController) {
     this.searchResult = NOANOA_1926;
@@ -32,5 +33,27 @@ export class SearchPage {
 
     // サンプルデータから取得
     this.searchResult = NOANOA_1926;
+    this.heroesArray = [];
+    for(var prop in this.searchResult.competitive.heroes){
+      let heroObject = this.searchResult.competitive.heroes[prop];
+      heroObject.name = prop;
+      heroObject.heroImage = this.getHeroImageName(prop);
+      this.heroesArray.push(this.searchResult.competitive.heroes[prop]);
+    }
+    console.log(this.heroesArray);
+  }
+
+  // ヒーロー名を受け取りアイコン画像ファイル名を返すメソッド
+  getHeroImageName(name) {
+    let returnValue = "";
+    switch (name) {
+      case "lúcio":
+        returnValue = "Icon-Lucio.png";
+        break;
+      default:
+        // マッチしない場合に入れる画像を用意する必要あり
+        break;
+    }
+    return returnValue;
   }
 }
