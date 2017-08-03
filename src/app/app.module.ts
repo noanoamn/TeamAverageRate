@@ -8,7 +8,7 @@ import { DetailPage } from '../pages/detail/detail';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 // カスタムパイプ
-import { KeysPipe } from '../utilities/keys-pipe';
+import { OrderByPipe } from '../utilities/order-by-pipe';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -20,7 +20,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     DetailPage,
     HomePage,
     TabsPage,
-    KeysPipe
+    OrderByPipe
   ],
   imports: [
     BrowserModule,

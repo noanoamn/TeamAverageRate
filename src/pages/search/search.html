@@ -54,12 +54,12 @@
       <p>{{ searchResult.competitive.global.games_won }} - {{ searchResult.competitive.global.games_lost }} - {{ searchResult.competitive.global.games_tied }}</p>
       <p>{{ searchResult.profile.rank }}</p>
     </ion-item>
-    <ion-item *ngFor="let hero of searchResult.competitive.heroes | keys">
+    <ion-item *ngFor="let hero of heroesArray | orderBy:'games_played_sum'">
       <ion-avatar item-start>
-        <img src="../../assets/hero-images/Icon-Lucio.png">
+        <img src="../../assets/hero-images/{{ hero.heroImage }}">
       </ion-avatar>
-      <h2>{{ hero }}</h2>
-      <p>{{ searchResult.competitive.heroes[hero].games_won }} - {{ searchResult.competitive.heroes[hero].games_lost }} - {{ searchResult.competitive.heroes[hero].games_tied }}</p>
+      <h2>{{ hero.heroName }}</h2>
+      <p>{{ hero.games_won }} - {{ hero.games_lost }} - {{ hero.games_tied }}</p>
     </ion-item>
   </ion-list>
 </ion-content>
