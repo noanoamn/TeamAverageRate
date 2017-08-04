@@ -83,11 +83,11 @@ export class SearchPage {
         returnValue.heroImageName = 'Icon-doomfist.png';
         break;
       case 'd.va':
-        returnValue.heroName = '';
+        returnValue.heroName = 'D.Va';
         returnValue.heroImageName = 'Icon-dva.png';
         break;
       case 'genji':
-        returnValue.heroName = 'D.Va';
+        returnValue.heroName = 'Genji';
         returnValue.heroImageName = 'Icon-genji.png';
         break;
       case 'hanzo':
