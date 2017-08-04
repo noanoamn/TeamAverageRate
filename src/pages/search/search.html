@@ -1,57 +1,59 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-navbar>
     <!--<ion-searchbar (input)="getItems($event)"></ion-searchbar>-->
     <ion-row>
-      <ion-col col-5>
-        <ion-input type="text"  placeholder="XXXXXXXXXX"></ion-input>
+      <ion-col col-7>
+        <ion-input type="text" placeholder="XXXXXXXXXX" class="ta-search-page-navbar-input-box"></ion-input>
       </ion-col>
       <ion-col col-1>
-        <div>#</div>
+        <div class="ta-search-page-navbar-sharp">#</div>
       </ion-col>
-      <ion-col col-3>
+      <ion-col col-4>
         <!--最大五桁-->
-        <ion-input type="number" placeholder="NNNNN"></ion-input>
-      </ion-col>
-      <ion-col col-3>
-        <button ion-button icon-only (click)="getPlayerInfo(nnnn, mmmmm)">
-          <ion-icon name="search"></ion-icon>
-        </button>
+        <ion-input type="number" placeholder="NNNNN" class="ta-search-page-navbar-input-box"></ion-input>
       </ion-col>
     </ion-row>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="getPlayerInfo('xxxx', 'xxxx')">
+        <ion-icon name="search"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="region">
+      <ion-segment-button value="kr" selected>
+        KR
+      </ion-segment-button>
+      <ion-segment-button value="xx">
+        US
+      </ion-segment-button>
+      <ion-segment-button value="yy">
+        EU
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="platform">
+      <ion-segment-button value="pc">
+        PC
+      </ion-segment-button>
+      <ion-segment-button value="cs">
+        CS
+      </ion-segment-button>
+    </ion-segment>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-  <ion-card>
-    <ion-card-content>
-      <ion-segment [(ngModel)]="region" padding-bottom>
-        <ion-segment-button value="kr">
-          KR
-        </ion-segment-button>
-        <ion-segment-button value="xx">
-          US
-        </ion-segment-button>
-        <ion-segment-button value="yy">
-          EU
-        </ion-segment-button>
-      </ion-segment>
-      <ion-segment [(ngModel)]="platform">
-        <ion-segment-button value="pc">
-          PC
-        </ion-segment-button>
-        <ion-segment-button value="cs">
-          CS
-        </ion-segment-button>
-      </ion-segment>
-    </ion-card-content>
-  </ion-card>
   <ion-list>
     <ion-item>
       <ion-thumbnail item-start>
         <img src="{{ searchResult.profile.avatar }}">
       </ion-thumbnail>
       <h2>{{ searchResult.profile.nick }}</h2>
-      <p>{{ searchResult.competitive.global.games_won | nullToZero:searchResult.competitive.global.games_won }} - {{ searchResult.competitive.global.games_lost | nullToZero:searchResult.competitive.global.games_lost }} - {{ searchResult.competitive.global.games_tied | nullToZero:searchResult.competitive.global.games_tied }}</p>
+      <p>{{ searchResult.competitive.global.games_won | nullToZero:searchResult.competitive.global.games_won }} - {{ searchResult.competitive.global.games_lost
+        | nullToZero:searchResult.competitive.global.games_lost }} - {{ searchResult.competitive.global.games_tied | nullToZero:searchResult.competitive.global.games_tied
+        }}
+      </p>
       <p>{{ searchResult.profile.rank }}</p>
     </ion-item>
     <ion-item *ngFor="let hero of heroesArray | orderBy:'games_played_sum'">
@@ -59,7 +61,8 @@
         <img src="../../assets/hero-images/{{ hero.heroImage }}">
       </ion-avatar>
       <h2>{{ hero.heroName }}</h2>
-      <p>{{ hero.games_won | nullToZero:hero.games_won }} - {{ hero.games_lost | nullToZero:hero.games_lost }} - {{ hero.games_tied | nullToZero:hero.games_tied }}</p>
+      <p>{{ hero.games_won | nullToZero:hero.games_won }} - {{ hero.games_lost | nullToZero:hero.games_lost }} - {{ hero.games_tied
+        | nullToZero:hero.games_tied }}</p>
     </ion-item>
   </ion-list>
 </ion-content>

@@ -15,9 +15,13 @@ export class SearchPage {
 
   searchResult;
   heroesArray;
+  region;
+  platform;
 
   constructor(public navCtrl: NavController) {
     this.searchResult = NOANOA_1926;
+    this.region = 'kr';
+    this.platform = 'pc';
   }
 
   // 検索を行う
