@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { DetailPage } from '../detail/detail';
 import overwatchJs from 'overwatch-js';
+import { SEARCH_RESULT_INITIAL_DATA } from './SEARCH_RESULT_INITIAL_DATA';
 // サンプルデータ
 import { NOANOA_1926 } from '../../assets/sample-data/Noanoa-1926';
 import { HOSHIMI_11424 } from '../../assets/sample-data/hoshimi-11424';
@@ -19,7 +20,7 @@ export class SearchPage {
   platform;
 
   constructor(public navCtrl: NavController) {
-    this.searchResult = NOANOA_1926;
+    this.searchResult = SEARCH_RESULT_INITIAL_DATA;
     this.region = 'kr';
     this.platform = 'pc';
   }
@@ -36,9 +37,20 @@ export class SearchPage {
     //   );
 
     // サンプルデータから取得
-    this.searchResult = NOANOA_1926;
+    // 検索ボタンを押すたびにサンプルデータが切り替わるYO
+    if (this.searchResult.profile.nick == 'Noanoa'){
+      this.searchResult = HOSHIMI_11424;
+    } else if (this.searchResult.profile.nick == 'hoshimi') {
+      this.searchResult = GAPPO3_1173;
+    } else if (this.searchResult.profile.nick == 'gappo3') {
+      this.searchResult = SEARCH_RESULT_INITIAL_DATA;
+    } else {
+      this.searchResult = NOANOA_1926;
+    }
+
+    // 取得データからヒーローの配列を作成
     this.heroesArray = [];
-    for(var prop in this.searchResult.competitive.heroes){
+    for (var prop in this.searchResult.competitive.heroes) {
       let heroObject = this.searchResult.competitive.heroes[prop];
       heroObject.name = prop;
       heroObject.heroImage = this.getHeroImageName(prop).heroImageName;
@@ -50,16 +62,16 @@ export class SearchPage {
   }
 
   // Nullはゼロに置き換える
-  nullToZero(value){
-    if(!value){
+  nullToZero(value) {
+    if (!value) {
       return 0;
-    }else{
+    } else {
       return value;
     }
   }
 
   // プレイ総数と、勝ち数、負け数、引き分け数をすべて加算する
-  sumPlayedValue(games_played, games_won, games_lost, games_tied){
+  sumPlayedValue(games_played, games_won, games_lost, games_tied) {
     let sum = this.nullToZero(games_played)
       + this.nullToZero(games_won)
       + this.nullToZero(games_lost)

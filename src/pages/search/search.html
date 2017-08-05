@@ -3,14 +3,14 @@
     <!--<ion-searchbar (input)="getItems($event)"></ion-searchbar>-->
     <ion-row>
       <ion-col col-7>
-        <ion-input type="text" placeholder="XXXXXXXXXX" class="ta-search-page-navbar-input-box"></ion-input>
+        <ion-input type="text" placeholder="XXXXXXXXXX" class="ta-navbar-input-box"></ion-input>
       </ion-col>
       <ion-col col-1>
-        <div class="ta-search-page-navbar-sharp">#</div>
+        <div class="ta-navbar-sharp">#</div>
       </ion-col>
       <ion-col col-4>
         <!--最大五桁-->
-        <ion-input type="number" placeholder="NNNNN" class="ta-search-page-navbar-input-box"></ion-input>
+        <ion-input type="number" placeholder="NNNNN" class="ta-navbar-input-box"></ion-input>
       </ion-col>
     </ion-row>
     <ion-buttons end>
@@ -58,7 +58,7 @@
     </ion-item>
     <ion-item *ngFor="let hero of heroesArray | orderBy:'games_played_sum'">
       <ion-avatar item-start>
-        <img src="../../assets/hero-images/{{ hero.heroImage }}">
+        <img src="../../assets/images/heroes/{{ hero.heroImage }}">
       </ion-avatar>
       <h2>{{ hero.heroName }}</h2>
       <p>{{ hero.games_won | nullToZero:hero.games_won }} - {{ hero.games_lost | nullToZero:hero.games_lost }} - {{ hero.games_tied
