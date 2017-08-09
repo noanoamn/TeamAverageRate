@@ -47,14 +47,14 @@
   <ion-list>
     <ion-item>
       <ion-thumbnail item-start>
-        <img src="{{ searchResult.profile.avatar }}">
+        <img src="{{ userInfo.profile.avatar }}">
       </ion-thumbnail>
-      <h2>{{ searchResult.profile.nick }}</h2>
-      <p>{{ searchResult.competitive.global.games_won | nullToZero:searchResult.competitive.global.games_won }} - {{ searchResult.competitive.global.games_lost
-        | nullToZero:searchResult.competitive.global.games_lost }} - {{ searchResult.competitive.global.games_tied | nullToZero:searchResult.competitive.global.games_tied
+      <h2>{{ userInfo.profile.nick }}</h2>
+      <p>{{ userInfo.competitive.global.games_won | nullToZero:userInfo.competitive.global.games_won }} - {{ userInfo.competitive.global.games_lost
+        | nullToZero:userInfo.competitive.global.games_lost }} - {{ userInfo.competitive.global.games_tied | nullToZero:userInfo.competitive.global.games_tied
         }}
       </p>
-      <p>{{ searchResult.profile.rank }}</p>
+      <p>{{ userInfo.profile.rank }}</p>
     </ion-item>
     <ion-item *ngFor="let hero of heroesArray | orderBy:'games_played_sum'">
       <ion-avatar item-start>

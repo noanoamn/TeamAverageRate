@@ -1,5 +1,5 @@
 // 初期表示時に用いる空のデータ
-export const SEARCH_RESULT_INITIAL_DATA = {
+export const USER_INFO_INITIAL_DATA = {
   "profile": {
     "nick": "",
     "level": 0,

@@ -12,8 +12,25 @@
 </ion-header>
 
 <ion-content padding>
-
-  <!--tooManyBugs-->
-  詳細ページやで
-
+  <ion-list>
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src="{{ userInfo.profile.avatar }}">
+      </ion-thumbnail>
+      <h2>{{ userInfo.profile.nick }}</h2>
+      <p>{{ userInfo.competitive.global.games_won | nullToZero:userInfo.competitive.global.games_won }} - {{ userInfo.competitive.global.games_lost
+        | nullToZero:userInfo.competitive.global.games_lost }} - {{ userInfo.competitive.global.games_tied | nullToZero:userInfo.competitive.global.games_tied
+        }}
+      </p>
+      <p>{{ userInfo.profile.rank }}</p>
+    </ion-item>
+    <ion-item *ngFor="let hero of heroesArray | orderBy:'games_played_sum'">
+      <ion-avatar item-start>
+        <img src="../../assets/images/heroes/{{ hero.heroImage }}">
+      </ion-avatar>
+      <h2>{{ hero.heroName }}</h2>
+      <p>{{ hero.games_won | nullToZero:hero.games_won }} - {{ hero.games_lost | nullToZero:hero.games_lost }} - {{ hero.games_tied
+        | nullToZero:hero.games_tied }}</p>
+    </ion-item>
+  </ion-list>
 </ion-content>
