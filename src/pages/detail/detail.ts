@@ -17,11 +17,14 @@ export class DetailPage {
 
   userInfo;
   heroesArray;
+  userId;
+  region;
+  platform;
 
   constructor(public navCtrl: NavController, private heroesArrayService: HeroesArrayService, navParams: NavParams) {
-    let userId = navParams.get("userId");
-    let region = navParams.get("region");
-    let platform = navParams.get("platform");
+    this.userId = navParams.get("userId");
+    this.region = navParams.get("region");
+    this.platform = navParams.get("platform");
 
     // 機能拡張の可能性も考慮し、ユーザーIDを受けて詳細画面で詳細情報を取得する形とする。
     // this.userInfo = this.getUserInfo(userId, region, platform);
@@ -29,11 +32,11 @@ export class DetailPage {
     // 空のユーザー情報
     this.userInfo = USER_INFO_INITIAL_DATA;
 
-    console.log('userId:' + userId);
+    console.log('userId:' + this.userId);
 
     // 以下はダミーデータ
     // TODO API実装後に消す
-    switch (userId) {
+    switch (this.userId) {
       case 'Noanoa-1926':
         this.userInfo = NOANOA_1926;
         break;
