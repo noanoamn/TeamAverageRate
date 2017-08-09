@@ -17,12 +17,16 @@
   <ion-list>
     <ion-item *ngFor="let item of items">
       <ion-thumbnail item-start>
-        <img src="../../assets/sample-image/PI_Rikimaru.png">
+        <img src="{{ item.userInfo.profile.avatar }}">
       </ion-thumbnail>
-      <h2>{{ item.userName }}</h2>
-      <p>WinRate</p>
-      <p>Rate</p>
-      <button ion-button clear item-end (click)="openDetailPage()">View</button>
+      <h2>{{ item.userInfo.profile.nick }}</h2>
+      <p>
+        {{ item.userInfo.competitive.global.games_won | nullToZero:item.userInfo.competitive.global.games_won }} - {{ item.userInfo.competitive.global.games_lost
+        | nullToZero:item.userInfo.competitive.global.games_lost }} - {{ item.userInfo.competitive.global.games_tied | nullToZero:item.userInfo.competitive.global.games_tied
+        }}
+      </p>
+      <p>{{ item.userInfo.profile.rank }}</p>
+      <button ion-button clear item-end (click)="openDetailPage(item.userId, item.region, item.platform)">View</button>
     </ion-item>
   </ion-list>
 </ion-content>

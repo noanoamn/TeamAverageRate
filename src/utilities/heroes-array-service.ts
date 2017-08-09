@@ -20,7 +20,7 @@ export class HeroesArrayService {
   }
 
   // Nullはゼロに置き換える
-  nullToZero(value) {
+  nullToZero(value): number {
     if (!value) {
       return 0;
     } else {
@@ -29,7 +29,7 @@ export class HeroesArrayService {
   }
 
   // プレイ総数と、勝ち数、負け数、引き分け数をすべて加算する
-  sumPlayedValue(games_played, games_won, games_lost, games_tied) {
+  sumPlayedValue(games_played, games_won, games_lost, games_tied): number {
     let sum = this.nullToZero(games_played)
       + this.nullToZero(games_won)
       + this.nullToZero(games_lost)
@@ -37,8 +37,8 @@ export class HeroesArrayService {
     return sum;
   }
 
-  // ヒーロー名を受け取りアイコン画像ファイル名を返すメソッド
-  getHeroImageName(name) {
+  // ヒーロー名を受け取りアイコン画像ファイル名、ヒーロー名の正式名称を返すメソッド
+  getHeroImageName(name){
     let heroName = '';
     let heroImageName = 'Icon-no-image.png';
     if (HERO_ARRAY_CONSTRUCTION_DATA[name].heroName && HERO_ARRAY_CONSTRUCTION_DATA[name].heroImageName) {

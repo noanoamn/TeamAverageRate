@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-// import overwatchJs from 'overwatch-js';
+import overwatchJs from 'overwatch-js';
 import { USER_INFO_INITIAL_DATA } from '../../assets/data/user-info-initial-data';
 import { HeroesArrayService } from '../../utilities/heroes-array-service';
 // サンプルデータ
