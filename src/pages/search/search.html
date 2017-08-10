@@ -3,18 +3,18 @@
     <!--<ion-searchbar (input)="getItems($event)"></ion-searchbar>-->
     <ion-row>
       <ion-col col-7>
-        <ion-input type="text" placeholder="XXXXXXXXXX" class="ta-navbar-input-box"></ion-input>
+        <ion-input type="text" placeholder="XXXXXXXXXX" class="ta-navbar-input-box" [(ngModel)]="playerIdFirstPart"></ion-input>
       </ion-col>
       <ion-col col-1>
         <div class="ta-navbar-sharp">#</div>
       </ion-col>
       <ion-col col-4>
         <!--最大五桁-->
-        <ion-input type="number" placeholder="NNNNN" class="ta-navbar-input-box"></ion-input>
+        <ion-input type="number" placeholder="NNNNN" class="ta-navbar-input-box" [(ngModel)]="playerIdSecondPart"></ion-input>
       </ion-col>
     </ion-row>
     <ion-buttons end>
-      <button ion-button icon-only (click)="getPlayerInfo('xxxx', 'xxxx')">
+      <button ion-button icon-only (click)="getPlayerInfo(playerIdFirstPart, playerIdSecondPart)">
         <ion-icon name="search"></ion-icon>
       </button>
     </ion-buttons>
