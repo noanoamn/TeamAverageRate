@@ -15,7 +15,6 @@ export class HeroesArrayService {
       heroObject.games_played_sum = this.sumPlayedValue(heroObject.games_played, heroObject.games_won, heroObject.games_lost, heroObject.games_tied)
       heroesArray.push(searchResult.competitive.heroes[prop]);
     }
-    console.log(heroesArray);
     return heroesArray;
   }
 

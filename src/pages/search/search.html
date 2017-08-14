@@ -66,3 +66,9 @@
     </ion-item>
   </ion-list>
 </ion-content>
+<ion-footer [hidden]="!hasValidUserInfo">
+  <ion-toolbar>
+    <button [hidden]="hasUserInList" ion-button full>Add this user to list</button>
+    <button [hidden]="!hasUserInList" ion-button full color="danger">Remove this user from list</button>
+  </ion-toolbar>
+</ion-footer>
