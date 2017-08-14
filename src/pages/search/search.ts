@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { Component, ChangeDetectorRef } from '@angular/core';
+import { NavController, LoadingController } from 'ionic-angular';
 import overwatchJs from 'overwatch-js';
 import { USER_INFO_INITIAL_DATA } from '../../assets/data/user-info-initial-data';
 import { HeroesArrayService } from '../../utilities/heroes-array-service';
@@ -21,12 +21,14 @@ export class SearchPage {
   platform: string;
   playerIdFirstPart: string;
   playerIdSecondPart: number;
+  loader: any;
 
-  constructor(public navCtrl: NavController, private heroesArrayService: HeroesArrayService) {
+  constructor(public navCtrl: NavController, private heroesArrayService: HeroesArrayService, private chRef: ChangeDetectorRef, public loadingCtrl: LoadingController) {
     this.userInfo = USER_INFO_INITIAL_DATA;
     this.heroesArray = [];
     this.region = 'kr';
     this.platform = 'pc';
+    this.createLoader();
   }
 
   // 検索を行う
@@ -40,19 +42,27 @@ export class SearchPage {
 
     // PlayerIDの前半部分と後半部分を結合する
     let playerId = playerIdFirstPart + '-' + playerIdSecondPart;
+    // ロードを表示する
+    this.createLoader();
+    this.loader.present();
 
+    let instance : SearchPage = this;
     // overwatch-jsの詳細情報取得メソッド
     overwatchJs.getAll(this.platform, this.region, playerId).then(
       (data) => {
-        this.userInfo = data;
-        // サービスを利用して、検索結果からヒーローの配列を成形する
-        this.heroesArray = this.heroesArrayService.getHeroesArray(this.userInfo);
+        instance.setUserInfo(data);
+        instance.chRef.detectChanges();
         console.log('data');
         console.log(data);
         console.dir(data, { depth: 2, colors: true });
+        // ロードを非表示にする
+        instance.loader.dismiss();
       }, (reason) => {
-        this.userInfo = USER_INFO_INITIAL_DATA;
-        this.heroesArray = [];
+        instance.userInfo = USER_INFO_INITIAL_DATA;
+        instance.heroesArray = [];
+        instance.chRef.detectChanges();
+        // ロードを非表示にする
+        instance.loader.dismiss();
       }
     );
 
@@ -67,5 +77,20 @@ export class SearchPage {
     // } else {
     //   this.userInfo = NOANOA_1926;
     // }
+  }
+
+  // ユーザー情報を出して、その情報を元にヒーローの配列を整形する
+  setUserInfo(userInfo) {
+    this.userInfo = userInfo;
+    // サービスを利用して、検索結果からヒーローの配列を成形する
+    this.heroesArray = this.heroesArrayService.getHeroesArray(this.userInfo);
+  }
+
+  // ローダーの作成
+  createLoader() {
+    this.loader = this.loadingCtrl.create({
+      content: "Please wait...",
+      duration: 30000
+    });
   }
 }

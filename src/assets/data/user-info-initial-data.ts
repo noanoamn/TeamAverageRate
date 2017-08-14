@@ -1,7 +1,7 @@
 // 初期表示時に用いる空のデータ
 export const USER_INFO_INITIAL_DATA = {
   "profile": {
-    "nick": "",
+    "nick": "No Results Found",
     "level": 0,
     "avatar": "../../assets/images/no-image.png",
     "rank": 0,
