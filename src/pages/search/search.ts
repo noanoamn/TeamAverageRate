@@ -3,10 +3,11 @@ import { NavController, LoadingController } from 'ionic-angular';
 import overwatchJs from 'overwatch-js';
 import { USER_INFO_INITIAL_DATA } from '../../assets/data/user-info-initial-data';
 import { HeroesArrayService } from '../../utilities/heroes-array-service';
+import { Storage } from '@ionic/storage';
 // サンプルデータ
-import { NOANOA_1926 } from '../../assets/sample-data/Noanoa-1926';
-import { HOSHIMI_11424 } from '../../assets/sample-data/hoshimi-11424';
-import { GAPPO3_1173 } from '../../assets/sample-data/gappo3-1173';
+// import { NOANOA_1926 } from '../../assets/sample-data/Noanoa-1926';
+// import { HOSHIMI_11424 } from '../../assets/sample-data/hoshimi-11424';
+// import { GAPPO3_1173 } from '../../assets/sample-data/gappo3-1173';
 
 @Component({
   selector: 'page-search',
@@ -23,7 +24,7 @@ export class SearchPage {
   playerIdSecondPart: number;
   loader: any;
 
-  constructor(public navCtrl: NavController, private heroesArrayService: HeroesArrayService, private chRef: ChangeDetectorRef, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, private heroesArrayService: HeroesArrayService, private chRef: ChangeDetectorRef, public loadingCtrl: LoadingController, private storage: Storage) {
     this.userInfo = USER_INFO_INITIAL_DATA;
     this.heroesArray = [];
     this.region = 'kr';
@@ -46,10 +47,16 @@ export class SearchPage {
     this.createLoader();
     this.loader.present();
 
-    let instance : SearchPage = this;
+    let instance: SearchPage = this;
     // overwatch-jsの詳細情報取得メソッド
     overwatchJs.getAll(this.platform, this.region, playerId).then(
       (data) => {
+        
+        // 検索でヒットした場合、プレイヤー名をキーにしてストレージにデータを格納する
+        // TODO addボタンを作ってこの処理を実装する
+        instance.storage.set(data.profile.nick, data);
+        console.log(data.profile.nick);
+
         instance.setUserInfo(data);
         instance.chRef.detectChanges();
         console.log('data');
