@@ -23,10 +23,14 @@ export class SearchPage {
   playerIdFirstPart: string;
   playerIdSecondPart: number;
   loader: any;
+  hasValidUserInfo: boolean;
+  hasUserInList: boolean;
 
   constructor(public navCtrl: NavController, private heroesArrayService: HeroesArrayService, private chRef: ChangeDetectorRef, public loadingCtrl: LoadingController, private storage: Storage) {
     this.userInfo = USER_INFO_INITIAL_DATA;
     this.heroesArray = [];
+    this.hasValidUserInfo = false;
+    this.hasUserInList = false;
     this.region = 'kr';
     this.platform = 'pc';
     this.createLoader();
@@ -57,17 +61,14 @@ export class SearchPage {
         instance.storage.set(data.profile.nick, data);
         console.log(data.profile.nick);
 
-        instance.setUserInfo(data);
+        instance.setUserInfo(data, instance.playerIdFirstPart, instance.playerIdSecondPart);
         instance.chRef.detectChanges();
-        console.log('data');
-        console.log(data);
-        console.dir(data, { depth: 2, colors: true });
         // ロードを非表示にする
         instance.loader.dismiss();
       }, (reason) => {
         instance.userInfo = USER_INFO_INITIAL_DATA;
         instance.heroesArray = [];
-        instance.chRef.detectChanges();
+        instance.hasValidUserInfo = false;
         // ロードを非表示にする
         instance.loader.dismiss();
       }
@@ -87,10 +88,12 @@ export class SearchPage {
   }
 
   // ユーザー情報を出して、その情報を元にヒーローの配列を整形する
-  setUserInfo(userInfo) {
+  setUserInfo(userInfo, playerIdFirstPart, playerIdSecondPart) {
     this.userInfo = userInfo;
     // サービスを利用して、検索結果からヒーローの配列を成形する
     this.heroesArray = this.heroesArrayService.getHeroesArray(this.userInfo);
+    // ユーザー情報が正しいかどうか確認し、ボタンを表示制御する
+    this.hasValidUserInfo = this.checkUserInfoValid(userInfo, playerIdFirstPart, playerIdSecondPart);
   }
 
   // ローダーの作成
@@ -99,5 +102,28 @@ export class SearchPage {
       content: "Please wait...",
       duration: 30000
     });
+  }
+
+  // ユーザーの妥当性確認
+  checkUserInfoValid(userInfo, playerIdFirstPart, playerIdSecondPart) {
+    if (userInfo == USER_INFO_INITIAL_DATA || !playerIdFirstPart || !playerIdSecondPart) {
+      return false;
+    } else {
+      let playerId = playerIdFirstPart + '-' + playerIdSecondPart;
+      // リストに該当ユーザーがいるか確認
+      this.hasUserInList = this.checkUserInList(playerId);
+      return true;
+    }
+  }
+
+  // リストに検索したユーザーが居るか確認する
+  checkUserInList(playerId) {
+    // TODO ローカルストレージに該当ユーザーが居るか確認する
+    // ローカルストレージが実装されていないので、以下はテスト用コード
+    if (this.hasUserInList) {
+      return false;
+    } else {
+      return true;
+    }
   }
 }
